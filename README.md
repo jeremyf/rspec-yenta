@@ -1,10 +1,10 @@
-# Rspec::Yenta
+# RSpec::Yenta
 
-TODO: Write a gem description
+
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your project's Gemfile:
 
     gem 'rspec-yenta'
 
@@ -18,12 +18,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In your project's Rakefile add the following:
 
-## Contributing
+```rake
+require 'rspec/yenta'
+RSpec::Yenta.load_tasks
+```
 
-1. Fork it ( http://github.com/<my-github-username>/rspec-yenta/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+```sh
+$ rake yenta
+```
+
+If you aren't seeing some of the tasks you were expecting, try the following:
+
+```rake
+require 'rspec/yenta'
+RSpec::Yenta.load_tasks do
+  require File.expand_path("../config/environment.rb",  __FILE__)
+end
+```
+
+`RSpec::Yenta.load_tasks` takes an arbitrary block. And the above block is
+requiring the Rails application. This may also be required if you have custom
+matchers that you want to expose. Or if you are working with a Rails Engine.
