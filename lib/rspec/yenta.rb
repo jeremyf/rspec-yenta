@@ -11,7 +11,7 @@ module RSpec
     end
 
     class TaskHelper
-      include Rake::DSL if defined? Rake::DSL
+      include ::Rake::DSL if defined? ::Rake::DSL
       attr_reader :config
       def initialize(&config_block)
         @config = config_block
